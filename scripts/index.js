@@ -1,12 +1,14 @@
 // @todo: Темплейт карточки
 function createCardFromTemplate(cardData) {
     const card = template.content.cloneNode(true);
+    const deleteButton = card.querySelector('.card__delete-button');
+    const cardElement = card.querySelector('.card');
     
     card.querySelector('.card__image').src = cardData.link;
     card.querySelector('.card__title').textContent = cardData.name;
 
-    deleteCard(card);
-    
+    deleteButton.addEventListener('click', () => deleteCard(cardElement));
+
     return card;
 }
 
@@ -23,12 +25,10 @@ function renderCards(cardsArray) {
 }
 
 // @todo: Функция удаления карточки
-function deleteCard(cardElement) {
-    const deleteButton = cardElement.querySelector('.card__delete-button');
-    const card = cardElement.querySelector('.card');
-    
-    deleteButton.addEventListener('click', () => card.remove());
+function deleteCard(cardElement) {  
+    cardElement.remove();
 }
+
 
 // @todo: Вывести карточки на страницу
 document.addEventListener('DOMContentLoaded', () => {
