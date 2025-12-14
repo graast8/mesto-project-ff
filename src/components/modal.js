@@ -1,3 +1,5 @@
+export const allPopups = document.querySelectorAll('.popup');
+
 // Функция открытия модального окна
 export function openModal(modal) {
     modal.classList.add('popup_is-opened');
@@ -8,10 +10,18 @@ export function closeModal(modal) {
     modal.classList.remove('popup_is-opened');
 }
 
-// Инициализация модальных окон
-export function initModals() {
-    const allPopups = document.querySelectorAll('.popup');
-    allPopups.forEach(popup => {
-        popup.classList.add('popup_is-animated');
-    });
+export function closeModalByOverlay(e) {
+    if (e.target === e.currentTarget) {
+        closeModal(e.currentTarget);
+    }
 }
+
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+         allPopups.forEach(popup => {
+            if (popup.classList.contains('popup_is-opened')) {
+                    closeModal(popup);
+                }
+            });
+        }
+    });
