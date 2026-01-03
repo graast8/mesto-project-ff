@@ -6,8 +6,11 @@ import card1Image from '../images/card_1.jpg';
 import card2Image from '../images/card_2.jpg';
 import card3Image from '../images/card_3.jpg';
 
-import { initialCards, createCardFromTemplate, deleteCard, handleLike } from './cards.js';
-import { openModal, closeModal, closeModalByOverlay, allPopups } from './modal.js';
+import { initialCards } from './cards.js';
+import { createCardFromTemplate, deleteCard, handleLike} from './card.js';
+import { openModal, closeModal, closeModalByOverlay } from './modal.js';
+
+export const allPopups = document.querySelectorAll('.popup');
 
  const logo = document.querySelector('.header__logo');
     if (logo) {
@@ -69,7 +72,7 @@ function openImagePopup(cardData) {
 }
 
 // Находим форму в DOM
-const formElementPopup = document.querySelector('.popup_type_edit .popup__form');    // Воспользуйтесь методом querySelector()
+const formEdit = document.querySelector('.popup_type_edit .popup__form');    // Воспользуйтесь методом querySelector()
 // Находим поля формы в DOM
 const nameInput = document.querySelector('.popup__input_type_name') // Воспользуйтесь инструментом .querySelector()
 const jobInput = document.querySelector('.popup__input_type_description') // Воспользуйтесь инструментом .querySelector()
@@ -107,7 +110,7 @@ function handleEditFormSubmit(evt) {
 
 // Прикрепляем обработчик к форме:
 // он будет следить за событием “submit” - «отправка»
-formElementPopup.addEventListener('submit', handleEditFormSubmit);
+formEdit.addEventListener('submit', handleEditFormSubmit);
 
 
 
